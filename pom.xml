@@ -11,11 +11,46 @@
 	<groupId>com.example</groupId>
 	<artifactId>spring-boot-products-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-products-demo</name>
+	<packaging>war</packaging>
+	<name>devops1-springboot</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	<distributionManagement>
+
+<repository>
+
+<id>release</id>
+
+<name>releases</name>
+
+<url>http://localhost:8081/artifactory/libs-release-local</url>
+
+</repository>
+
+<snapshotRepository>
+
+<id>snapshot</id>
+
+<name>snapshots</name>
+
+<url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+
+</snapshotRepository>
+
+</distributionManagement>
+<scm>
+
+<connection>scm:git:git@github.com:aroratanya/devops1-springboot.git</connection>
+
+<developerConnection>scm:git:git@github.com:aroratanya/devops1-springboot.git</developerConnection>
+
+<url>git@github.com:aroratanya/devops-springboot.git</url>
+
+<tag>v0.0.1</tag>
+
+</scm>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,6 +78,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -54,6 +94,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+
+<groupId>org.apache.maven.plugins</groupId>
+
+<artifactId>maven-release-plugin</artifactId>
+
+<version>2.5.1</version>
+
+<configuration>
+
+<tagNameFormat>v@{project.version}</tagNameFormat>
+
+<autoVersionSubmodules>true</autoVersionSubmodules>
+
+</configuration>
+
+</plugin>
 		<plugin>
 <groupId>org.jacoco</groupId>
 <artifactId>jacoco-maven-plugin</artifactId>
